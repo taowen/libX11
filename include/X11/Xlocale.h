@@ -32,6 +32,13 @@ from The Open Group.
 #include <X11/Xfuncproto.h>
 #include <X11/Xosdefs.h>
 
+/* On case-insensitive build hosts, bionic's <xlocale.h> can resolve to
+ * this X11 header. Include the next header to expose locale_t first.
+ */
+#ifdef __ANDROID__
+#include_next <xlocale.h>
+#endif
+
 #include <locale.h>
 
 #endif /* _X11_XLOCALE_H_ */
